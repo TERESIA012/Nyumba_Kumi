@@ -53,3 +53,51 @@ class Neighbourhood(models.Model):
     def delete_neighborhood(self):
         self.delete()
         
+        
+class Business(models.Model):
+    name = models.CharField(max_length=50)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default = '')
+    email = models.CharField(max_length=100, default = '')
+    neighbourhood = models.ForeignKey("Neighbourhood",on_delete=models.CASCADE, default='', null=True, blank=True)
+    description = models.TextField( default = '')
+
+
+
+    def __str__(self):
+        return f'{self.name} business'
+
+
+    def save_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    @classmethod
+    def hood_business(cls, id):
+        hoodbusiness = Business.objects.filter(neighbourhood = id)
+        return hoodbusiness
+    
+    
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    text = models.TextField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default = '')
+    date = models.DateField(auto_now_add=True)
+    neighbourhood = models.ForeignKey("Neighbourhood",on_delete=models.CASCADE, default='', null=True, blank=True)
+    
+
+    @classmethod
+    def hood_post(cls,id):
+        hoodpost = Post.objects.filter(neighbourhood = id)
+        return hoodpost
+    
+    def __str__(self):
+        return f'{self.title} Post'
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+        
