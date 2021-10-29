@@ -1,11 +1,10 @@
-from myhood.models import Business, Post, Profile, Neighbourhood
-from django.contrib.auth.models import User
-from myhood.forms import NewBusinessForm, NewHoodForm, PostForm, SignUpForm, UpdateProfileForm, UpdateUserForm
-from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate, login, logout
+from .forms import SignUpForm, UserUpdateForm, ProfileUpdateForm, NewHoodForm, EditHoodForm, NewBizForm, NewPostForm
+from .models import Profile, Neighbourhood, Business, Post
 
 # Create your views here.
 def home(request):
@@ -46,3 +45,30 @@ def profile(request):
         'profile_form': profile_form
     }
     return render(request, 'profile.html', context)
+
+@login_required(login_url='/accounts/login/')
+def update_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+
+            return redirect('profile')
+
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user)
+
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form
+
+        }
+
+    return render(request, 'update_profile.html', context)
