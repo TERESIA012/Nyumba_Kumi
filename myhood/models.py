@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+import cloudinary
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
@@ -12,7 +13,7 @@ class Neighbourhood(models.Model):
     location= models.CharField(max_length=60)
     admin = models.ForeignKey("Profile",on_delete=models.CASCADE, related_name = 'hood')
     description = models.TextField( default = '')
-    logo = models.CloudinaryField('logo')
+    hood_photo =cloudinary.models.CloudinaryField('photo', default='photo')
     emergency_contact=models.CharField(max_length=100,null=True, blank=True)
     occupants_count = models.IntegerField(null  = True ,blank = True)
     
@@ -47,8 +48,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE , related_name='profile')
     email = models.CharField(max_length=100, default = '')
     location = models.CharField(max_length=100,blank =True)
-    neighbourhood = models.ForeignKey("Neighbourhood",on_delete=models.CASCADE, default='', null=True, blank=True)
-    profile_pic = models.CloudinaryField('profile')
+    profile_pic = cloudinary.models.CloudinaryField('profile', default='photo')
     neighbourhood = models.ForeignKey(
         Neighbourhood, on_delete=models.CASCADE, default='', null=True, blank=True)
 
@@ -74,10 +74,11 @@ def create_user_profile(sender, instance, created, **kwargs):
 class Business(models.Model):
     name = models.CharField(max_length=50)
     user = models.ForeignKey(User,on_delete=models.CASCADE,default = '')
-    image = models.CloudinaryField('images')
+    image = cloudinary.models.CloudinaryField('images', default='photo')
     email = models.CharField(max_length=100, default = '')
-    neighbourhood = models.ForeignKey("Neighbourhood",on_delete=models.CASCADE, default='', null=True, blank=True)
     description = models.TextField( default = '')
+    neighbourhood = models.ForeignKey("Neighbourhood",on_delete=models.CASCADE, default='', null=True, blank=True)
+    
 
 
 
