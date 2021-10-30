@@ -7,6 +7,9 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
+
+
+
 class Profile(models.Model):
     username = models.CharField(max_length=100, blank =True )
     bio = models.TextField(max_length=300,blank =True)
@@ -31,8 +34,6 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     
-
-
 class Neighbourhood(models.Model):
     name = models.CharField(max_length=50)
     location= models.CharField(max_length=60)
@@ -51,7 +52,9 @@ class Neighbourhood(models.Model):
         self.save()
 
     def delete_neighborhood(self):
-        self.delete()
+        self.delete()    
+
+
 
 
 
@@ -61,6 +64,7 @@ class Business(models.Model):
     email = models.CharField(max_length=100, default = '')
     neighbourhood = models.ForeignKey("Neighbourhood",on_delete=models.CASCADE, default='', null=True, blank=True)
     description = models.TextField( default = '')
+    date = models.DateField(auto_now_add=True)
 
 
 
