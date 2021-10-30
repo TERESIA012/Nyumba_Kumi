@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -13,7 +14,7 @@ class Profile(models.Model):
     email = models.CharField(max_length=100, default = '')
     location = models.CharField(max_length=100,blank =True)
     neighbourhood = models.ForeignKey("Neighbourhood",on_delete=models.CASCADE, default='', null=True, blank=True)
-    profile_pic = models.ImageField( upload_to='profile/', blank ='true',default='default.png')
+    profile_pic = CloudinaryField('images')
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -37,7 +38,7 @@ class Neighbourhood(models.Model):
     location= models.CharField(max_length=60)
     admin = models.ForeignKey("Profile",on_delete=models.CASCADE, related_name = 'hood')
     description = models.TextField( default = '')
-    hood_logo = models.ImageField( upload_to='images/', blank ='true',default='')
+    hood_logo = CloudinaryField('images')
     emergency_contact=models.CharField(max_length=100,null=True, blank=True)
     occupants_count = models.IntegerField(null  = True ,blank = True)
     
