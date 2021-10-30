@@ -1,1 +1,1 @@
-web: gunicorn fcards.wsgi --log-file -
+web: gunicorn neighborhood.wsgi --log-file -
