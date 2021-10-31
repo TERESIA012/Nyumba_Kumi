@@ -1,5 +1,3 @@
-
-  
 {% extends 'base.html' %}
 {% block content %}
 
@@ -8,23 +6,35 @@
 
 <div class="container">
     <div class="row">
-        <div class=" col-sm-12 col-lg-6 mb-4">
-            <img class="" src="{{hood.hood_logo.url}}" alt="Card image cap">
+        <div class="col-md-1"></div>
+        <div class=" col-md-6">
+            <div class="panel panel-default" style="margin-top:5%"></div>
+            <img class="card-img-top mb-10 img-responsive" src="{{hood.hood_logo.url}}" style="height:auto; width:100%">
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p> <span style="font-weight: 700;">Name : </span> {{hood.name}} </p>
+                        <p><span style="font-weight: 700;">Location : </span> {{ hood.location}}</p>
+                        <p> <span style="font-weight: 700;">Description : </span> {{ hood.description }} </p>
+                        <p> <span style="font-weight: 700;">Occupants : </span> {{ hood.occupants_count }} </p>
+                        <p> <span style="font-weight: 700;">Emergency Contact: </span> {{ hood.emergency_count }} </p>
+                        <br>
+
+                        <a class='btn grey darken' href="{%url 'newbiz'%}">New business</a>
+                        <a class="btn btn-dark" href=" /businesses/{{hood.id}} ">View Businesses </a><br><br>
+
+                        <a class='btn grey darken' href="{%url 'post'%}">New Post</a>
+                        <a class='btn btn-dark' href="/hoodpost/{{hood.id}}">View Post</a>
+
+
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class=" col-sm-12 col-lg-6">
-            <p><b>Name:</b> {{hood.name}}</p>  
-            <p><b>Location:</b>{{hood.location}}</p>
-            <p><b>Occupants:</b> {{hood.occupants_count}}</p>
-            <p><b>Description:</b> {{hood.description}}</p>
-            <p><b>Emergency Contact:</b> {{hood.emergency_contact}}</p>
-            <a class='btn grey darken' href="{%url 'newbiz'%}">New business</a>
-            <a class="btn default-color" href=" /businesses/{{hood.id}} ">View Businesses </a><br><br>
-
-            <a class='btn grey darken' href="{%url 'post'%}">New Post</a>
-            <a class='btn default-color' href="/hoodpost/{{hood.id}}">View Post</a>
 
 
-        </div>
     </div>
 </div>
 
