@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'bootstrap4',
-    'crispy_forms'
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +103,11 @@ DATABASES = {
         'PASSWORD':'Access',
     }
 }
+
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
 
 
 

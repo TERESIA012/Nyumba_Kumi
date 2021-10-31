@@ -20,7 +20,13 @@ from django_registration.backends.one_step.views import RegistrationView
 
 urlpatterns = [
     path("accounts/", include("django_registration.backends.one_step.urls")),
+     path(
+        "accounts/register/",
+        RegistrationView.as_view(success_url="/hood"),
+        name="django_registration_register",
+    ),
+    path("accounts/", include("django.contrib.auth.urls")),
     path('admin/', admin.site.urls),
     url(r"^", include("myhood.urls")),
-    path('accounts/', include('django.contrib.auth.urls')),
+    
 ]
