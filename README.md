@@ -77,7 +77,7 @@ The following languages have been used on this project:
 
 ## Setup/Installation Requirements
 
-- Live link to view the project <a target="_blank" href="">Live Link</a>
+- Live link to view the project <a target="_blank" href="https://tesshood.herokuapp.com/">Live Link</a>
 
 | Behavior            | Input                         | Output                        | 
 | ------------------- | ----------------------------- | ----------------------------- |
