@@ -9,9 +9,9 @@ class ProfileTest(TestCase):
      
         self.user = User(username="username", password="password")
         self.user.save()
-        self.neighbourhood =  Neighbourhood(hood_name = "HOODY", location= "Gardenia", admin = self.user,description='mtaa yetu', hood_photo="hood.jpg")
+        self.neighbourhood =  Neighbourhood(hood_name = "Nakuru", location= "Milimani", admin = self.user,description='nyumbakumi', profile_pic="myhood.jpg")
         self.neighbourhood.save()
-        self.profile = Profile(email='email@g.com', profile_pic='profile.jpg', bio='this is a test profile',neighbourhood=self.neighbourhood,
+        self.profile = Profile(email='info@g.com', profile_pic='profile.jpg', bio='profile',neighbourhood=self.neighbourhood,
                                     user=self.user)
       
     def test_instance(self):
@@ -40,7 +40,7 @@ class NeighbourhoodTest(TestCase):
      
         self.user = User(username="username", password="password")
         self.user.save()
-        self.neighbourhood =  Neighbourhood(hood_name = "HOODY", hood_location= "Gardenia", admin = self.user,hood_description='mtaa yetu', hood_photo="hood.jpg")
+        self.neighbourhood =  Neighbourhood(hood_name = "Nakuru", hood_location= "Milimani", admin = self.user,hood_description='nyumbakumi', hood_photo="myhood.jpg")
         self.neighbourhood.save()
    
     def test_instance(self):
@@ -64,9 +64,9 @@ class BusinessTest(TestCase):
      
         self.user = User(username="username", password="password")
         self.user.save()
-        self.neighbourhood =  Neighbourhood(hood_name = "HOODY", hood_location= "Gardenia", admin = self.user,hood_description='mtaa yetu', hood_photo="hood.jpg")
+        self.neighbourhood =  Neighbourhood(hood_name = "Nakuru", hood_location= "Milimani", admin = self.user,hood_description='nyumbakumi')
         self.neighbourhood.save()
-        self.biz = Business(user=self.user,business_name="Mara Moja", business_hood=self.neighbourhood,business_email="moja@gmail.com", business_desc="Selling sneakers")
+        self.biz = Business(user=self.user,business_name="Sneakers", neighborhood=self.neighbourhood,business_email="sneakers@gmail.com", business_desc="Selling sneakers")
         self.biz.save()
 
     def test_instance(self):
@@ -88,9 +88,9 @@ class PostTest(TestCase):
      
         self.user = User(username="username", password="password")
         self.user.save()
-        self.neighbourhood =  Neighbourhood(hood_name = "HOODY", hood_location= "Gardenia", admin = self.user,hood_description='mtaa yetu', hood_photo="hood.jpg")
+        self.neighbourhood =  Neighbourhood(hood_name = "Nakuru", hood_location= "Milimani", admin = self.user,hood_description='nyumbakumi', hood_photo="myhood.jpg")
         self.neighbourhood.save()
-        self.post = Post(user=self.user,title="Mara Moja",image="post.jpg" ,content ="my post", timestamp=datetime.datetime,neighbourhood=self.neighbourhood)
+        self.post = Post(user=self.user,title="Sneakers",image="post.jpg" ,content ="my post", timestamp=datetime.datetime,neighbourhood=self.neighbourhood)
         self.post.save()
 
     def test_instance(self):
