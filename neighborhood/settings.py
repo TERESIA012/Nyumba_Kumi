@@ -37,7 +37,7 @@ cloudinary.config(
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--mac5)^s4bt37)f(#y26&h!w1yv175-x18e#ddg(fleq1fqpr6'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
