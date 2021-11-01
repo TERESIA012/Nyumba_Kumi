@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm, UserUpdateForm, ProfileUpdateForm, NewHoodForm, EditHoodForm, NewBizForm, NewPostForm
 from .models import Profile, Neighbourhood, Business, Post
+  
 
 
 # Create your views here.
@@ -24,7 +25,7 @@ def register(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'django_registration/registration_form.html', {'form': form})
+    return render(request, 'registration/registration_form.html', {'form': form})
 
 
 @login_required(login_url='/accounts/login/')

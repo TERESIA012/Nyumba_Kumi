@@ -17,6 +17,7 @@ django-heroku==0.3.1
 django-model-utils==4.1.0
 django-rating==0.1.5
 django-registration==3.2
+django-registration-redux==2.9
 django-star-ratings==0.9.1
 django-utils-six==2.0
 djangorestframework==3.12.2
